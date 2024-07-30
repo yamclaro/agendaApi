@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  cpf: MyString
+  telefone: MyString
+  email: MyString
+  data_engresso: 2024-07-30
+  data_saida: 2024-07-30
+  status: 1
+  observacoes: MyText
+
+two:
+  nome: MyString
+  cpf: MyString
+  telefone: MyString
+  email: MyString
+  data_engresso: 2024-07-30
+  data_saida: 2024-07-30
+  status: 1
+  observacoes: MyText
