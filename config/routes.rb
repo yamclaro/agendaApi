@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :itinerarios
+  resources :descansos
   resources :enderecos
   resources :empresas
   resources :tipo_empresas

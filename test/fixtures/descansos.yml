@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2024-07-30
+  hora_inicio: 2024-07-30 16:23:29
+  Prestador: one
+
+two:
+  data: 2024-07-30
+  hora_inicio: 2024-07-30 16:23:29
+  Prestador: two
