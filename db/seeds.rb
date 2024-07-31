@@ -1,5 +1,17 @@
 require 'faker'
 
+Segmento.destroy_all
+TipoEmpresa.destroy_all
+Funcao.destroy_all
+Empresa.destroy_all
+Cliente.destroy_all
+Prestador.destroy_all
+Itinerario.destroy_all
+Descanso.destroy_all
+Servico.destroy_all
+PrestadorServico.destroy_all
+Agenda.destroy_all
+
 # Cria segmentos
 5.times do
   Segmento.create!(
@@ -20,11 +32,12 @@ end
 funcoes = Funcao.all
 if funcoes.empty?
   5.times do
-    funcoes << Funcao.create!(
+    Funcao.create!(
       descricao: Faker::Job.title,
       observacao: Faker::Lorem.sentence
     )
   end
+  funcoes = Funcao.all # Atualiza a variável para refletir os novos registros
 end
 
 # Cria empresas
@@ -55,7 +68,7 @@ end
       nome: Faker::Name.name,
       cpf: Faker::IdNumber.brazilian_citizen_number,
       email: Faker::Internet.email,
-      ativo: [1, 0].sample,  # Usa 1 para true e 0 para false
+      ativo: [1, 0].sample,# Usa true ou false
       funcao_id: funcoes.sample.id
     )
 
@@ -84,7 +97,7 @@ end
       servico = Servico.create!(
         descricao: Faker::Commerce.product_name,
         valor: Faker::Commerce.price(range: 50.0..500.0),
-        tempo: Faker::Time.forward(days: 0, period: :morning, format: :short)
+        tempo: Faker::Number.between(from: 30, to: 120)  # Ajustado para minutos
       )
 
       PrestadorServico.create!(
@@ -99,7 +112,7 @@ end
 10.times do
   Agenda.create!(
     data: Faker::Date.forward(days: 23),
-    hora: Faker::Time.forward(days: 23, period: :morning, format: :short),
+    hora: Faker::Time.forward(days: 23, period: :morning),
     observacao: Faker::Lorem.sentence,
     empresa_id: Empresa.all.sample.id,
     cliente_id: Cliente.all.sample.id,
@@ -107,6 +120,3 @@ end
     servico_id: Servico.all.sample.id
   )
 end
-
-
-2Xqzo0446gUvf27V
