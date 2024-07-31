@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2024-07-31
+  hora: 2024-07-31 12:52:23
+  observacao: MyString
+  empresa: one
+  cliente: one
+  prestador: one
+  servico: one
+
+two:
+  data: 2024-07-31
+  hora: 2024-07-31 12:52:23
+  observacao: MyString
+  empresa: two
+  cliente: two
+  prestador: two
+  servico: two

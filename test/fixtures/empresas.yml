@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  razao: MyString
+  cnpj: MyString
+  dataFundacao: 2024-07-31
+  qtdFuncionarios: 1
+  qtdMaxFuncionarios: 1
+  site: MyString
+  sobre: MyText
+
+two:
+  razao: MyString
+  cnpj: MyString
+  dataFundacao: 2024-07-31
+  qtdFuncionarios: 1
+  qtdMaxFuncionarios: 1
+  site: MyString
+  sobre: MyText
