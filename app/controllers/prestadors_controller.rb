@@ -46,6 +46,6 @@ class PrestadorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def prestador_params
-      params.require(:prestador).permit(:nome, :cpf, :email, :ativo, :funcao_id)
+      params.require(:prestador).permit(:nome, :cpf, :email, :funcao_id)
     end
 end

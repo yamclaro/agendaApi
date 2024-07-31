@@ -46,6 +46,6 @@ class EmpresasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def empresa_params
-      params.require(:empresa).permit(:razao, :cnpj, :dataFundacao, :qtdFuncionarios, :qtdMaxFuncionarios, :site, :sobre)
+      params.require(:empresa).permit(:razao, :cnpj, :dataFundacao, :site, :sobre)
     end
 end
