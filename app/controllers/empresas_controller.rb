@@ -8,7 +8,14 @@ class EmpresasController < ApplicationController
   end
 
   def show
-    render json: @empresa
+    repository = Empresas::Repositories::EmpresaRepository.new
+    empresa = repository.find(params[:id])
+
+    if empresa
+      render json: empresa, status: :ok
+    else
+      render json: { error: 'Empresa não encontrada' }, status: :not_found
+    end
   end
 
   def create
