@@ -21,8 +21,15 @@ class EmpresasController < ApplicationController
   def create
     service = Empresas::Services::EmpresaServices.new(Empresas::Repositories::EmpresaRepository.new)
     empresa = service.create_empresa(empresa_params)
-    render json: empresa, status: :created
+    if empresa.save?
+      render json: empresa, status: :created
+    else
+      render json: { error: empresa.errors.full_messages }, status: :unprocessable_entity
+    end
+  rescue ActiveRecord::RecordNotUnique => e
+    render json: { error: 'CNPJ já está em uso' }, status: :conflict
   end
+
 
   def update
     service = Empresas::Services::EmpresaServices.new(Empresas::Repositories::EmpresaRepository.new)
