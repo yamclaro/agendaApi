@@ -41,3 +41,5 @@ group :development, :test do
 end
 
 
+
+gem "byebug", "~> 11.1"

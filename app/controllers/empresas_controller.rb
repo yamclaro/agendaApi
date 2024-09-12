@@ -1,16 +1,20 @@
 class EmpresasController < ApplicationController
-  before_action :set_empresa, only: %i[ show update destroy ]
+  before_action only: %i[ show update destroy ]
 
   # GET /empresas
   def index
     @empresas = Empresa.all
-
     render json: @empresas
   end
 
   # GET /empresas/1
   def show
-    render json: @empresa
+    @empresa = Empresa.find_by(id: params[:id])
+    if @empresa.present?
+      render json: @empresa
+    else
+      render json: return_status_result(model: 'empresa', status: 404, message: 'A empresa solicitada não foi encontrada.'), status: :not_found
+    end
   end
 
   # POST /empresas
@@ -26,25 +30,34 @@ class EmpresasController < ApplicationController
 
   # PATCH/PUT /empresas/1
   def update
-    if @empresa.update(empresa_params)
-      render json: @empresa
+    @empresa = Empresa.find_by(id: params[:id])
+    if @empresa.present?
+      if @empresa.update(empresa_params)
+        render json: @empresa
+      else
+        render json: @empresa.errors, status: :unprocessable_entity
+      end
     else
-      render json: @empresa.errors, status: :unprocessable_entity
+      render json: return_status_result(model: 'empresa', status: 404, message: 'A empresa solicitada não foi encontrada.'), status: :not_found
     end
   end
 
   # DELETE /empresas/1
   def destroy
-    @empresa.destroy!
+    @empresa = Empresa.find_by(id: params[:id])
+    if @empresa.present?
+      @empresa.destroy
+      render json: @empresa
+    unless
+      render json: @empresa.errors, status: :unprocessable_entity
+    end
+    else
+      render json: return_status_result(model: 'empresa', status: 404, message: 'A empresa solicitada não foi encontrada.'), status: :not_found
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_empresa
-      @empresa = Empresa.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
+  
     def empresa_params
       params.require(:empresa).permit(:razao, :cnpj, :telefone, :email, :site, :dataFundacao, :status, :observacao, :Segmento_id, :TipoEmpresa_id)
     end
